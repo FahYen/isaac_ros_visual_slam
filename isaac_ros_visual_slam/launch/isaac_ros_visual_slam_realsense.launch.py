@@ -25,7 +25,7 @@ def generate_launch_description():
     realsense_camera_node = Node(
         name='camera',
         namespace='camera',
-        package='realsense2_camera',
+        package='realsense2_camera',   # https://github.com/IntelRealSense/realsense-ros for parameter informations
         executable='realsense2_camera_node',
         parameters=[{
             'enable_infra1': True,
@@ -36,7 +36,7 @@ def generate_launch_description():
             'depth_module.profile': '640x360x90',
             'enable_gyro': True,
             'enable_accel': True,
-            'gyro_fps': 200,
+            'gyro_fps': 200,           # TODO: test if lower fps can fix motion module failure
             'accel_fps': 200,
             'unite_imu_method': 2
         }],
@@ -55,12 +55,13 @@ def generate_launch_description():
             'accel_noise_density': 0.001862,
             'accel_random_walk': 0.003,
             'calibration_frequency': 200.0,
-            'image_jitter_threshold_ms': 22.00,
+            'image_jitter_threshold_ms': 22.00,  # ignore warnings on camera startup
             'base_frame': 'camera_link',
             'imu_frame': 'camera_gyro_optical_frame',
-            'enable_slam_visualization': True,
-            'enable_landmarks_view': True,
-            'enable_observations_view': True,
+            'enable_localization_n_mapping': True,
+            'enable_slam_visualization': True,   # disable when running on Jetson to save compute
+            'enable_landmarks_view': True,       # disable when running on Jetson to save compute
+            'enable_observations_view': True,    # disable when running on Jetson to save compute
             'camera_optical_frames': [
                 'camera_infra1_optical_frame',
                 'camera_infra2_optical_frame',
@@ -71,7 +72,7 @@ def generate_launch_description():
             ('visual_slam/camera_info_0', 'camera/infra1/camera_info'),
             ('visual_slam/image_1', 'camera/infra2/image_rect_raw'),
             ('visual_slam/camera_info_1', 'camera/infra2/camera_info'),
-            ('visual_slam/imu', 'camera/imu'),
+            ('visual_slam/imu', 'camera/imu'), # realsense motion module fails when RGB, IR and Motion module are all enabled on the same time. External IMU needed.
         ],
     )
 

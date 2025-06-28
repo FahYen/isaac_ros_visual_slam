@@ -59,9 +59,9 @@ def generate_launch_description():
             'base_frame': 'camera_link',
             'imu_frame': 'camera_gyro_optical_frame',
             'enable_localization_n_mapping': True,
-            'enable_slam_visualization': True,   # disable when running on Jetson to save compute
-            'enable_landmarks_view': True,       # disable when running on Jetson to save compute
-            'enable_observations_view': True,    # disable when running on Jetson to save compute
+            'enable_slam_visualization': False,   # disable when running on Jetson to save compute
+            'enable_landmarks_view': False,       # disable when running on Jetson to save compute
+            'enable_observations_view': False,    # disable when running on Jetson to save compute
             'camera_optical_frames': [
                 'camera_infra1_optical_frame',
                 'camera_infra2_optical_frame',

@@ -35,8 +35,8 @@ class IsaacROSVisualSlamLaunchFragment(IsaacROSLaunchFragment):
         enable_slam_visualization = LaunchConfiguration('enable_slam_visualization')
         enable_landmarks_view = LaunchConfiguration('enable_landmarks_view')
         enable_observations_view = LaunchConfiguration('enable_observations_view')
-        camera_optical_frames = LaunchConfiguration('camera_optical_frames')
-        base_frame = LaunchConfiguration('base_frame')
+        camera_optical_frames = LaunchConfiguration('camera_optical_frames')          # "['zedm_left_camera_optical_frame', 'zedm_right_camera_optical_frame']"
+        base_frame = LaunchConfiguration('base_frame')                                # zedm_camera_center, both from command line arguments
         num_cameras = LaunchConfiguration('num_cameras')
         enable_imu_fusion = LaunchConfiguration('enable_imu_fusion')
         imu_frame = LaunchConfiguration('imu_frame')
